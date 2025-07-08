@@ -3,16 +3,19 @@
     <div class="logo-wrap">
       <p class="logo"><span class="logo">SoftUni Forum</span></p>
     </div>
-    <div>
+    <div *ngIf="!isLoggedIn" class="mini-navbar">
       <ul>
-        <li *ngIf="isLoggedIn; else loginBlock" class="mini-navbar">
-          <button (click)="logoutUser()">Logout</button>
+        <li>
+          <a routerLink="/register">Register</a>
+        </li>
+        <li>
+          <a routerLink="/login">Login</a>
+        </li>
+        <li>
+          <a routerLink="/logout">Logout</a>
         </li>
       </ul>
     </div>
-    <ng-template #loginBlock class="mini-navbar">
-      <button (click)="loginUser()">Login</button>
-    </ng-template>
   </div>
   <nav>
     <ul>
