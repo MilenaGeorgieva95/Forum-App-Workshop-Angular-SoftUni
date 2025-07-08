@@ -1,0 +1,30 @@
+<header>
+  <div class="mini-navbar-wrap">
+    <div class="logo-wrap">
+      <p class="logo"><span class="logo">SoftUni Forum</span></p>
+    </div>
+    <div>
+      <ul>
+        <li *ngIf="isLoggedIn; else loginBlock" class="mini-navbar">
+          <button (click)="logoutUser()">Logout</button>
+        </li>
+      </ul>
+    </div>
+    <ng-template #loginBlock class="mini-navbar">
+      <button (click)="loginUser()">Login</button>
+    </ng-template>
+  </div>
+  <nav>
+    <ul>
+      <li>
+        <a href="#">Home</a>
+      </li>
+      <li>
+        <a href="#">Themes</a>
+      </li>
+      <li>
+        <a href="#">New Theme</a>
+      </li>
+    </ul>
+  </nav>
+</header>
