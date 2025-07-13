@@ -11,5 +11,9 @@ export class HeaderComponent {
     return this.userService.isAuth;
   }
 
+  get firstName(): string {
+    return this.userService.user?.firstName || '';
+  }
+
   constructor(private userService: UserService) {}
 }
