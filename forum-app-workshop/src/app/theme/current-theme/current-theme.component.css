@@ -1,5 +1,10 @@
 /* theme content  */
 
+.container{
+    display: flex;
+    justify-content: center;
+}
+
 .theme-content {
     display: flex;
     flex-direction: column;
