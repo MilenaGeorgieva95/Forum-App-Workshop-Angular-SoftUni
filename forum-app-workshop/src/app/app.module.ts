@@ -10,10 +10,11 @@ import { PostsListComponent } from './posts-list/posts-list.component';
 import { AppRoutingModule } from './app-routing.module';
 import { HomeComponent } from './home/home.component';
 import { AboutComponent } from './about/about.component';
-import {HttpClientModule} from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 import { PostItemComponent } from './posts-list/post-item/post-item.component';
 import { UserModule } from './user/user.module';
 import { ThemeModule } from './theme/theme.module';
+import { ErrorComponent } from './error/error.component';
 
 @NgModule({
   declarations: [
@@ -24,17 +25,18 @@ import { ThemeModule } from './theme/theme.module';
     HomeComponent,
     AboutComponent,
     PostItemComponent,
+    ErrorComponent,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
     CoreModule,
     SharedModule,
     HttpClientModule,
     UserModule,
-    ThemeModule
+    ThemeModule,
+    AppRoutingModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
