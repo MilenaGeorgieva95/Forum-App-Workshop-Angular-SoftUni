@@ -6,7 +6,7 @@
       discuss problems, which you have in your programming language or in your
       study in SoftUni.
     </p>
-    <div class="logged">
+    <div *ngIf="!isLoggedIn" class="logged">
       <ul>
         <li>
           <a routerLink="/login">
