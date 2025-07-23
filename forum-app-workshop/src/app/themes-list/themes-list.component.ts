@@ -25,7 +25,19 @@ export class ThemesListComponent implements OnInit {
       },
     });
   }
-    get isLoggedIn(): boolean {
+  get isLoggedIn(): boolean {
     return this.userService.isAuth;
+  }
+
+  get userId(): string {
+    return this.userService.user?.id || '';
+  }
+  isSubscribed(theme: Theme): boolean {
+    const isSubscribedUser = theme.subscribers.find(
+      (subscriber) => subscriber === this.userService.user?.id
+    );
+    console.log(!!isSubscribedUser);
+
+    return !!isSubscribedUser;
   }
 }
