@@ -11,7 +11,6 @@ export class AddThemeComponent {
 
   addTheme(e:Event, themeName: string, postText: string) {
     e.preventDefault();
-    console.log(themeName);
     
     this.apiService
       .crteateTheme(themeName, postText)
