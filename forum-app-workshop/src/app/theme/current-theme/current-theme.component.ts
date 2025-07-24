@@ -20,5 +20,12 @@ export class CurrentThemeComponent implements OnInit {
         .getTheme(this.themeId)
         .subscribe((theme) => this.theme=theme);
     });
+
+    // this.route.params.subscribe((params) => {
+    //   this.themeId = params['themeId'];
+    //   this.apiService
+    //     .getTheme(this.themeId)
+    //     .subscribe((theme) => (this.theme = theme));
+    // });
   }
 }
