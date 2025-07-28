@@ -80,6 +80,6 @@ p.error {
     padding-top: 0;
 }
 
-.input-error {
+input.input-error {
     border-left-color: red;
 }

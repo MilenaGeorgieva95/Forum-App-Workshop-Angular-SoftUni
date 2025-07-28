@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { UserService } from '../user.service';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -9,8 +10,10 @@ import { UserService } from '../user.service';
 export class LoginComponent {
   constructor(private userService: UserService) {}
 
-  login(ev: Event, email: string, password: string) {
-    ev.preventDefault();
+  login(form:NgForm) {
+    if(form.invalid){
+      return
+    }
     this.userService.login();
   }
 }
