@@ -1,4 +1,4 @@
-import { Directive, Input } from '@angular/core';
+import { Directive, Input, OnChanges, SimpleChanges } from '@angular/core';
 import {
   AbstractControl,
   NG_VALIDATORS,
@@ -17,24 +17,31 @@ import {
     },
   ],
 })
-export class EmailDirective implements Validator {
+export class EmailDirective implements Validator, OnChanges {
   @Input() appEmail: string[] = [];
   constructor() {}
 
   validator: ValidatorFn = () => null;
 
-  validate(control: AbstractControl): ValidationErrors | null {
-    console.log(control);
-
-    return null;
+  ngOnChanges(changes: SimpleChanges): void {
+    const { currentValue } = changes['appEmail'];
+    if (currentValue?.length) {
+      this.validator = this.emailValidator(currentValue);
+    }
   }
 
-  emailValidator(domains: string): ValidatorFn {
-    //[A-Za-z]+@gmail.(com|bg)
-    return (control) => {
-      console.log(control.value);
+  validate(control: AbstractControl<any, any>): ValidationErrors | null {
+    return this.validator(control);
+  }
 
-      return null;
+  emailValidator(domains: string[]): ValidatorFn {
+    const domainsStr = domains.join('|');
+    const regExp = new RegExp(`[A-Za-z]+@gmail.(${domainsStr})`);
+
+    return (control) => {
+      const isEmailInvalid: boolean =
+        control.value === '' || regExp.test(control.value);
+      return isEmailInvalid ? null : { emailValidator: true };
     };
   }
 }
