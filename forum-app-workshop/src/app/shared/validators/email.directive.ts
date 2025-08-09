@@ -6,6 +6,7 @@ import {
   Validator,
   ValidatorFn,
 } from '@angular/forms';
+import {emailValidator} from '../utils/email-validator';
 
 @Directive({
   selector: '[appEmail]',
@@ -26,7 +27,7 @@ export class EmailDirective implements Validator, OnChanges {
   ngOnChanges(changes: SimpleChanges): void {
     const { currentValue } = changes['appEmail'];
     if (currentValue?.length) {
-      this.validator = this.emailValidator(currentValue);
+      this.validator = emailValidator(currentValue);
     }
   }
 
@@ -34,14 +35,5 @@ export class EmailDirective implements Validator, OnChanges {
     return this.validator(control);
   }
 
-  emailValidator(domains: string[]): ValidatorFn {
-    const domainsStr = domains.join('|');
-    const regExp = new RegExp(`[A-Za-z]+@gmail.(${domainsStr})`);
 
-    return (control) => {
-      const isEmailInvalid: boolean =
-        control.value === '' || regExp.test(control.value);
-      return isEmailInvalid ? null : { emailValidator: true };
-    };
-  }
 }
