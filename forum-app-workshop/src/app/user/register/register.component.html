@@ -8,15 +8,20 @@
         <input class="input-error" type="text" name="username" id="username" placeholder="Johny" formControlName="username"/>
       </p>
 
-      <p class="error">Username is required!</p>
+      <ng-container *ngIf="form.get('username')?.touched">
+      <p class="error" *ngIf="form.get('username')?.errors?.['required']">Username is required!</p>
+      <p class="error" *ngIf="form.get('username')?.errors?.['minlength']">Username must be at least 5 characters!</p>
+      </ng-container>
 
       <p class="field field-icon">
         <label for="email"><span><i class="fas fa-envelope"></i></span></label>
         <input type="email" name="email" id="email" placeholder="john.doe@gmail.com" formControlName="email"/>
       </p>
 
-      <p class="error">Email is required!</p>
-      <p class="error">Email is not valid!</p>
+      <ng-container *ngIf="form.get('email')?.touched">
+        <p class="error" *ngIf="form.get('email')?.errors?.['required']">Email is required!</p>
+        <p *ngIf="form.get('email')?.errors?.['emailValidator']" class="error">Email is not valid!</p>
+      </ng-container>
 
       <p class="field field-icon">
         <label for="tel"><span><i class="fas fa-phone"></i></span></label>
