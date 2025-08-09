@@ -37,7 +37,7 @@
         <input type="text" name="password" id="password" placeholder="******" formControlName="password"/>
       </p>
 
-      <ng-container *ngIf="form.get('passGroup')?.get('password')?.touched">
+      <ng-container *ngIf="passGroup?.get('password')?.touched">
       <p class="error" *ngIf="form.get('passGroup')?.get('password')?.errors?.['required']">Password is required!</p>
       <p class="error" *ngIf="form.get('passGroup')?.get('password')?.errors?.['minlength']">Password must be at least 4 characters!</p>
       </ng-container>
