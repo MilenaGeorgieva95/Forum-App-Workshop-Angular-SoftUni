@@ -16,10 +16,11 @@ export class AddThemeComponent {
     }
 
     console.log(form.value);
+    const {themeName, postText}=form.value
     
-    
-  //   this.apiService
-  //     .crteateTheme(themeName, postText)
-  //     .subscribe((el) => console.log(el));
-  // }
+    this.apiService
+      .crteateTheme(themeName, postText)
+      .subscribe((el) => console.log(el));
+  }
 }
+
