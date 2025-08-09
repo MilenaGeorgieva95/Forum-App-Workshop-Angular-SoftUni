@@ -1,18 +1,18 @@
 <div class="container">
-  <form class="register" action="" method="post">
+  <form class="register" [formGroup]="form" (ngSubmit)="register()">
     <fieldset>
       <h2>Registration Form</h2>
 
       <p class="field field-icon">
         <label for="username"><span><i class="fas fa-user"></i></span></label>
-        <input class="input-error" type="text" name="username" id="username" placeholder="Johny"/>
+        <input class="input-error" type="text" name="username" id="username" placeholder="Johny" formControlName="username"/>
       </p>
-      
+
       <p class="error">Username is required!</p>
 
       <p class="field field-icon">
         <label for="email"><span><i class="fas fa-envelope"></i></span></label>
-        <input type="email" name="email" id="email" placeholder="john.doe@gmail.com"/>
+        <input type="email" name="email" id="email" placeholder="john.doe@gmail.com" formControlName="email"/>
       </p>
 
       <p class="error">Email is required!</p>
@@ -23,12 +23,13 @@
         <select name="select-tel" id="select-tel" class="tel">
           <option value="00359">+359</option>
         </select>
-        <input type="text" name="tel" id="tel" placeholder="885 888 888" />
+        <input type="text" name="tel" id="tel" placeholder="885 888 888" formControlName="tel"/>
       </p>
 
+      <ng-container formGroupName="passGroup">
       <p class="field field-icon">
         <label for="password"><span><i class="fas fa-lock"></i></span></label>
-        <input type="password" name="password" id="password" placeholder="******"/>
+        <input type="text" name="password" id="password" placeholder="******" formControlName="password"/>
       </p>
 
       <p class="error">Password is required!</p>
@@ -36,12 +37,14 @@
 
       <p class="field field-icon">
         <label for="rePassword"><span><i class="fas fa-lock"></i></span></label>
-        <input type="password" name="rePassword" id="rePassword" placeholder="******"/>
+        <input type="text" name="rePassword" id="rePassword" placeholder="******" formControlName="rePassword"/>
       </p>
 
       <p class="error">Repeat Password does not match password!</p>
+      </ng-container>
 
-      <button disabled>Create Account</button>
+
+      <button [disabled]="form.invalid">Create Account</button>
 
       <p class="text-center">Have an account?<a routerLink="/login">Log In</a></p>
     </fieldset>

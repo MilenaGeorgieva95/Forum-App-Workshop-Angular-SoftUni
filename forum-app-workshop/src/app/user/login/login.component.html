@@ -6,7 +6,7 @@
       <p class="field field-icon">
         <label for="email"><span><i class="fas fa-envelope"></i></span></label>
         <input class="input-error" type="email" name="email" id="email" placeholder="john.doe@gmail.com" #emailInput="ngModel" ngModel required 
-        [appEmail]="['bg', 'com']"/>
+        [appEmail]="domains"/>
       </p>
 <!-- {{emailInput.errors?.['required'] | json}} -->
 <ng-container *ngIf="emailInput.touched">
