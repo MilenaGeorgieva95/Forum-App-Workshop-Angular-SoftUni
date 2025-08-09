@@ -37,15 +37,20 @@
         <input type="text" name="password" id="password" placeholder="******" formControlName="password"/>
       </p>
 
-      <p class="error">Password is required!</p>
-      <p class="error">Password must be at least 4 characters!</p>
+      <ng-container *ngIf="form.get('passGroup')?.get('password')?.touched">
+      <p class="error" *ngIf="form.get('passGroup')?.get('password')?.errors?.['required']">Password is required!</p>
+      <p class="error" *ngIf="form.get('passGroup')?.get('password')?.errors?.['minlength']">Password must be at least 4 characters!</p>
+      </ng-container>
 
       <p class="field field-icon">
         <label for="rePassword"><span><i class="fas fa-lock"></i></span></label>
         <input type="text" name="rePassword" id="rePassword" placeholder="******" formControlName="rePassword"/>
       </p>
 
+      <ng-container *ngIf="form.get('passGroup')?.get('rePassword')?.touched">
       <p class="error" *ngIf="form.get('passGroup')?.errors?.['passNotMatching']">Repeat Password does not match password!</p>
+      </ng-container>
+
       </ng-container>
 
 
