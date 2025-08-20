@@ -36,7 +36,6 @@ export class ThemesListComponent implements OnInit {
     const isSubscribedUser = theme.subscribers.find(
       (subscriber) => subscriber === this.userService.user?.id
     );
-    console.log(!!isSubscribedUser);
 
     return !!isSubscribedUser;
   }
