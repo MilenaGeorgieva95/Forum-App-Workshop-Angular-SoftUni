@@ -15,6 +15,7 @@ import { PostItemComponent } from './posts-list/post-item/post-item.component';
 import { UserModule } from './user/user.module';
 import { ThemeModule } from './theme/theme.module';
 import { ErrorComponent } from './error/error.component';
+import { appInterceptorPtovider } from './app.interceptor';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,7 @@ import { ErrorComponent } from './error/error.component';
     ThemeModule,
     AppRoutingModule,
   ],
-  providers: [],
+  providers: [appInterceptorPtovider],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
