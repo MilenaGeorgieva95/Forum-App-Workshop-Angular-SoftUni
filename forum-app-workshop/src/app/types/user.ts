@@ -14,7 +14,13 @@ export interface User {
 export interface UserForAuth {
   username: string;
   email: string;
-  phoneNumber: string;
+  tel: string;
   password: string;
-  id:string;
+  id: string;
+}
+
+export interface ProfileDetails {
+  username: string;
+  email: string;
+  tel: string;
 }
