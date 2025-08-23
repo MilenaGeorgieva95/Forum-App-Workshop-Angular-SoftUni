@@ -21,8 +21,7 @@ export class ApiService {
   }
 
   crteateTheme(themeName: string, postText: string) {
-    const { apiUrl } = environment;
-    return this.http.post<Theme>(`${apiUrl}/themes`, { themeName, postText });
+    return this.http.post<Theme>(`/api/themes`, { themeName, postText });
   }
 
   getPosts(limit?: number) {
