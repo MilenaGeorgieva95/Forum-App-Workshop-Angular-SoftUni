@@ -12,10 +12,10 @@ import { HomeComponent } from './home/home.component';
 import { AboutComponent } from './about/about.component';
 import { HttpClientModule } from '@angular/common/http';
 import { PostItemComponent } from './posts-list/post-item/post-item.component';
-import { UserModule } from './user/user.module';
 import { ThemeModule } from './theme/theme.module';
 import { ErrorComponent } from './error/error.component';
 import { appInterceptorPtovider } from './app.interceptor';
+import { AuthenticateComponent } from './authenticate/authenticate.component';
 
 @NgModule({
   declarations: [
@@ -27,13 +27,13 @@ import { appInterceptorPtovider } from './app.interceptor';
     AboutComponent,
     PostItemComponent,
     ErrorComponent,
+    AuthenticateComponent,
   ],
   imports: [
     BrowserModule,
     CoreModule,
     SharedModule,
     HttpClientModule,
-    UserModule,
     ThemeModule,
     AppRoutingModule,
   ],
