@@ -1,26 +1,32 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnDestroy } from '@angular/core';
 import { UserForAuth } from '../types/user';
 import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject, tap } from 'rxjs';
+import { BehaviorSubject, Subscription, tap } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
-export class UserService {
+export class UserService implements OnDestroy {
   private user$$ = new BehaviorSubject<UserForAuth | undefined>(undefined);
-  private user$ = this.user$$.asObservable();
+  user$ = this.user$$.asObservable();
   user: UserForAuth | undefined;
   USER_KEY = '[user]';
+  userSubscription: Subscription;
 
   get isAuth(): boolean {
     return !!this.user;
   }
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {
+    this.userSubscription = this.user$.subscribe((user) => {
+      this.user = user;
+    });
+  }
+
   login(email: string, password: string) {
-    return this.http.post<UserForAuth>('/api/login', { email, password }).pipe(
-      tap(user=>this.user$$.next(user))
-    )
+    return this.http
+      .post<UserForAuth>('/api/login', { email, password })
+      .pipe(tap((user) => this.user$$.next(user)));
   }
 
   register(
@@ -30,16 +36,24 @@ export class UserService {
     password: string,
     rePassword: string
   ) {
-    return this.http.post<UserForAuth>('/api/register', {
-      username,
-      email,
-      tel,
-      password,
-      rePassword,
-    });
+    return this.http
+      .post<UserForAuth>('/api/register', {
+        username,
+        email,
+        tel,
+        password,
+        rePassword,
+      })
+      .pipe(tap((user) => this.user$$.next(user)));
   }
 
   logout() {
-    return this.http.post('/api/logout', {});
+    return this.http
+      .post('/api/logout', {})
+      .pipe(tap((user) => this.user$$.next(undefined)));
+  }
+
+  ngOnDestroy(): void {
+    this.userSubscription.unsubscribe();
   }
 }
