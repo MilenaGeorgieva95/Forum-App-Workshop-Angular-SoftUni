@@ -3,12 +3,14 @@ import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { AboutComponent } from './about/about.component';
 import { ErrorComponent } from './error/error.component';
+import { GlobalErrorComponent } from './core/global-error/global-error.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: '/home' },
   { path: 'home', component: HomeComponent },
   { path: 'auth', loadChildren: () => import('./user/user.module').then((m) => m.UserModule)},
   { path: 'about', component: AboutComponent },
+  { path: 'error', component: GlobalErrorComponent},
   { path: '**', redirectTo: '404' },
   { path: '404', component: ErrorComponent },
 ];
